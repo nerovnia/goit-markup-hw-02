@@ -1,0 +1,460 @@
+/***
+    The new CSS reset - version 1.7.3 (last updated 7.8.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+ *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+ display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+ - fix for the content editable attribute will work properly.
+ - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+/* -------------------- Init section */
+
+:root {
+  --main-color: #212121;
+  --first-color: #2196F3;
+  --head-link-passive-color: #757575;
+  --button-active-color: #188CE8;
+  --button-passive-color: #212121;
+  --button-passive-bg-color: #F5F4FA;
+  --footer-bg-color: #2F303A;
+  --inverse-color: #FFFF;
+  --section-accent-bg-color: #F5F4FA;
+  --effective-decigions-bg: #2F303A;
+  --department-bg: #F5F4FA;
+  --white: #FFF;
+  --transparent: #FFF0;
+}
+
+body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: var(--main-color);
+}
+
+.main-heading {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.36;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+
+.second-heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.17;
+  letter-spacing: 0.03em;
+}
+
+.third-heading {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.visually-hidden { 
+  color: rgba(0, 0, 0, 0); 
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  margin: -1px; 
+  border: 0; 
+  padding: 0; 
+  white-space: nowrap;
+  clip-path: inset(100%); 
+  clip: rect(0 0 0 0); 
+  overflow: hidden;
+}
+
+/* -------------------- Header styles */
+
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.wrapper {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.navigation {
+  display: flex;
+  text-align: left;
+  height: 80px;
+}
+
+.logotip {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 148px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.17;
+  letter-spacing: 0.03em;
+}
+
+.logo-first-word {
+  color: var(--first-color);
+}
+
+.page-head .logo-second-word {
+  color: var(--main-color);
+}
+
+.page-foot .logo-second-word {
+  color: var(--inverse-color);
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 284px;
+  margin: 0 96px;
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+}
+
+.phone-mail .link {
+  color: var(--head-link-passive-color);
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+}
+
+.nav-menu .nav-menu-list-item,
+.nav-menu .link {
+  display: flex;
+  align-items: center;
+  height: 98%;
+}
+
+.nav-menu .link:hover,
+.phone-mail .link:hover {
+  color: var(--first-color);
+}
+
+.nav-menu .link:hover {
+  border-bottom: 4px solid var(--first-color);
+}
+
+.phone-mail {
+  display: flex;
+  justify-self: end;
+  justify-content: space-between;
+  width: 304px;
+  font-weight: 500;
+}
+
+/* -------------------- Effective decigions styles */
+
+.effective-decigions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 600px;
+  padding: 200px 0;
+  background-color: var(--effective-decigions-bg);
+  color: var(--inverse-color);
+  text-align: center;
+}
+
+.effective-decigions__button {
+  width: 216px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: var(--first-color);
+  color: var(--inverse-color);
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  line-height: 1.88;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.effective-decigions__button:hover,
+.effective-decigions__button:focus {
+  background-color: var(--button-active-color);
+}
+
+/* -------------------- Benefits styles */
+.benefits .third-heading {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 96px 0;
+}
+
+.benefits-list-item {
+  width: 270px;
+  letter-spacing: 0.03em;
+}
+
+.benefits-list-item > third-heading {
+  line-height: 1.14;
+}
+
+.benefits-list-item-descr {
+  color: var(--head-link-passive-color);
+  line-height: 1.71;
+}
+
+/* -------------------- Occupations styles */
+.occupations {
+  display: flex;
+  flex-direction: column;
+}
+
+.occupations-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 52px 0 96px;
+}
+
+/* -------------------- Department styles */
+.department-full {
+  height: 648px;
+  padding: 94px 0 94px;
+  background-color: var(--department-bg);
+}
+
+.department {
+  display: flex;
+  flex-direction: column;
+}
+
+.department-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 52px 0 0;
+}
+
+.department-list__item {
+  background-color: var(--white);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 4px 4px;
+}
+
+.department-card-descr {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 108px;
+  padding: 32px 0;
+  text-align: center;
+  line-height: 1.19;
+  letter-spacing: 0.03em;
+}
+
+.department-card-descr-pos {
+  color: var(--head-link-passive-color);
+}
+
+/* -------------------- Portfolio styles */
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 96px;
+}
+
+.portfolio-select {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 96px 0 48px;
+  line-height: 1.63;
+  letter-spacing: 0.03em;
+}
+
+.portfolio-select__button {
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--button-passive-color);
+  background-color: var(--button-passive-bg-color);
+  margin: 0 4px;
+  padding: 0 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.portfolio-select__button:hover,
+.portfolio-select__button:focus {
+  color: var(--inverse-color);
+  background-color: var(--button-active-color);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
+}
+
+.portfolio-examples-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.portfolio-examples-list-item {
+  width: 364px;
+  height: 404px;
+  margin: 0 12px;
+}
+
+.portfolio-examples-list .third-heading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 2;
+  margin: 18px 24px 4px 24px;
+  line-height: 2;
+  letter-spacing: 0.06em;
+}
+
+.portfolio-examples-list .type-of-app {
+  font-size: 16px;
+  line-height: 1.88;
+  margin: 0 24px;
+  color: var(--head-link-passive-color);
+  line-height: 1.88;
+  letter-spacing: 0.03em;
+}
+
+/* -------------------- Footer styles */
+.page-foot {
+  height: 252px;
+  background-color: var(--footer-bg-color);
+}
+
+.page-foot-address {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 60px 0 60px;
+}
+
+.page-foot-address-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 84px;
+  padding-top: 20px;
+  font-style: normal;
+}
+
+.address-block-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+}
+
+.address-block-list__post {
+  color: var(--white);
+} 
+
+.address-block-list__phone,
+.address-block-list__mail {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.address-block-list__post:hover,
+.address-block-list__phone:hover,
+.address-block-list__mail:hover {
+  color: var(--button-active-color);
+}
